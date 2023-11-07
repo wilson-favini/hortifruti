@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta</title>
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="login">
+                <h2>Criar Conta</h2>
+            </div>
+            <div class="user">
+                <label for="email">Usuário</label>
+                <input type="email" id="email" placeholder="Digite seu nome de usuário">
+            </div>
+            <div class="senha">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Digite sua senha">
+                <img class="olhoAberto" src="../imgs/icons8-visivel-32.png" alt="">
+                <img class="olhoFechado" id="olhoFechado" src="../imgs/icons8-cego-32.png" alt="">
+            </div>
+            <div class="senha">
+                <label for="confirmarSenha">Confirme sua senha</label>
+                <input type="password" id="confirmarSenha" placeholder="Digite sua senha">
+            </div>
+            <div class="forgetPassword">
+                <p>Já possui cadastro? <a href="./login.html">clique aqui</a></p>
+            </div>
+            <div class="btnEntrar">
+                <button id="botaoEntrar" type="button">Criar Conta</button>
+                
+            </div>
+            
+        </form>
+    </div>
+    <script>
+        let olhoFechado = document.querySelector("#olhoFechado");
+        olhoFechado.addEventListener("click", mostraSenha);
+        function mostraSenha () {
+            let senha = document.querySelector("#password");
+            let confirmarSenha = document.querySelector("#confirmarSenha");
+            
+            if (olhoFechado != undefined) {
+                olhoFechado.style.display = "none";
+                olhoAberto.style.display = "block";
+                senha.setAttribute("type", "text");
+                confirmarSenha.setAttribute("type", "text");
+            } else {
+                console.log("Erro: " + olhoFechado);
+            }
+        }
+
+        let olhoAberto = document.querySelector(".olhoAberto");
+        olhoAberto.addEventListener("click", ocultaSenha);
+        function ocultaSenha () {
+            let senha = document.querySelector("#password");
+            let confirmarSenha = document.querySelector("#confirmarSenha");
+            
+            if (olhoAberto != undefined) {
+                olhoAberto.style.display = "none";
+                olhoFechado.style.display = "block";
+                senha.setAttribute("type", "password");
+                confirmarSenha.setAttribute("type", "password");
+            } else {
+                console.log("Erro: " + olhoAberto);
+            }
+        }
+
+        function verificaSenha () {
+            let inputEmail = document.querySelector("#email");
+            let inputSenha = document.querySelector("#password");
+            let inputConfirmSenha = document.querySelector("#confirmarSenha");
+
+            if ((!inputSenha.value) || (inputConfirmSenha.value != inputSenha.value)) {
+                inputSenha.style.borderBottom = "2px solid red";
+                inputConfirmSenha.style.borderBottom = "2px solid red";
+            } else {
+                inputSenha.style.borderBottom = "2px solid Green"
+                inputConfirmSenha.style.borderBottom = "2px solid Green"
+            }
+            if(!inputEmail.value) {
+                inputEmail.style.borderBottom = "2px solid red"
+            } else {
+                inputEmail.style.borderBottom = "2px solid Green"
+            }
+        }
+
+        let buttonEntrar = document.querySelector("#botaoEntrar")
+        .addEventListener("click", verificaSenha);
+        
+    </script>
+</body>
+</html>
